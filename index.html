@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Fetch Cache Test</title>
+</head>
+
+<body>
+  <h1>AI Fetch Cache Test</h1>
+
+  <p>
+    Эта страница нужна для проверки, делает ли AI новый HTTP-запрос
+    при повторном открытии одного и того же URL.
+  </p>
+
+  <hr>
+
+  <h2>Статическая версия</h2>
+  <p id="version">VERSION: 1</p>
+
+  <h2>Маркер HTML</h2>
+  <p>
+    BUILD_MARKER:
+    <strong>BUILD-AAA-111</strong>
+  </p>
+
+  <h2>JavaScript</h2>
+
+  <p>
+    JS_TIME:
+    <strong id="js-time">loading...</strong>
+  </p>
+
+  <p>
+    RANDOM:
+    <strong id="random">loading...</strong>
+  </p>
+
+  <p>
+    PAGE_URL:
+    <strong id="url">loading...</strong>
+  </p>
+
+  <p>
+    NAVIGATION_TYPE:
+    <strong id="nav-type">loading...</strong>
+  </p>
+
+  <script>
+    document.getElementById("js-time").textContent =
+      new Date().toISOString();
+
+    document.getElementById("random").textContent =
+      Math.random().toString(36).slice(2);
+
+    document.getElementById("url").textContent =
+      location.href;
+
+    const nav = performance.getEntriesByType("navigation")[0];
+
+    document.getElementById("nav-type").textContent =
+      nav ? nav.type : "unknown";
+  </script>
+</body>
+</html>
